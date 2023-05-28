@@ -205,17 +205,26 @@ public class UrnaEletronicaNew extends javax.swing.JFrame implements UrnaInterfa
     public String exibirApuracao() {
         String res = "";
         String nome = "";
+        String empate = "";
         int maior = 0;
+        int voto = 0;
         if(votosValidos.isEmpty()){
             res += "Enésima zerada";
         }else{
             for(int i = 0; i < votosValidos.size(); i++){
-                if(votosValidos.get(i).getVotos() > maior){
-                    maior = votosValidos.get(i).getVotos();
+                voto = votosValidos.get(i).getVotos();
+                if(voto > maior){
+                    maior = voto;
                     nome = votosValidos.get(i).getNome();
+                }else if(voto == maior){
+                    empate = "Houve um empate";
                 }
             }
-            res += "Candidato "+nome+" eleito com "+maior+" votos válidos!";
+            if(voto > maior){
+                res += "Candidato "+nome+" eleito com "+maior+" votos válidos!";
+            }else if(voto == maior){
+                res += empate;
+            }
         }
         return res;
     }
