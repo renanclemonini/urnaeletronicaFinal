@@ -3,6 +3,7 @@ package br.senai.ds1;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -204,11 +205,10 @@ public class UrnaEletronicaNew extends javax.swing.JFrame implements UrnaInterfa
     @Override
     public String exibirApuracao() {
         String nome = "";
-        String res = "";
         int maior = 0;
         int voto;
         if(votosValidos.isEmpty()){
-            res += "Enésima zerada";
+            return "Enésima zerada!";
         }else{
             for(Candidato c: votosValidos){
                 voto = c.getVotos();
@@ -217,17 +217,8 @@ public class UrnaEletronicaNew extends javax.swing.JFrame implements UrnaInterfa
                     nome = c.getNome();
                 }
             }
-//            Feito acima com foreach
-//            for(int i = 0; i < votosValidos.size(); i++){
-//                voto = votosValidos.get(i).getVotos();
-//                if(voto > maior){
-//                    maior = voto;
-//                    nome = votosValidos.get(i).getNome();
-//                }
-//            }
-            res += "Candidato "+nome+" eleito com "+maior+" votos válidos!";
+            return "Candidato "+nome+" eleito com "+maior+" votos válidos!";
         }
-        return res;
     }
     
     @Override
@@ -242,8 +233,6 @@ public class UrnaEletronicaNew extends javax.swing.JFrame implements UrnaInterfa
             JOptionPane.showMessageDialog(null, str);
         }
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
