@@ -203,7 +203,6 @@ public class UrnaEletronicaNew extends javax.swing.JFrame implements UrnaInterfa
     
     @Override
     public String exibirApuracao() {
-//        String res;
         String nome = "";
         String res = "";
         int maior = 0;
