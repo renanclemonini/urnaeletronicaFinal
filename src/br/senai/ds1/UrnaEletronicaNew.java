@@ -3,6 +3,7 @@ package br.senai.ds1;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,8 +25,8 @@ public class UrnaEletronicaNew extends javax.swing.JFrame implements UrnaInterfa
     Candidato c13 = new Candidato("Lula", "Geraldo", 13, "PT");
     Candidato c14 = new Candidato("Padre Kelmon", "Pastor Gamonal", 14, "PTB");
     Candidato c22 = new Candidato("Bolsonaro", "General Heleno", 22, "PL");
-    Candidato votoBranco = new Candidato("Voto em Branco", 0);
-    Candidato votoNulo = new Candidato("Voto Nulo", 0);
+    Candidato votoBranco = new Candidato("Voto em Branco");
+    Candidato votoNulo = new Candidato("Voto Nulo");
 
     //ImageIcon
     ImageIcon lula = new ImageIcon(getClass().getResource("/image/lula.jpg"));
@@ -231,6 +232,7 @@ public class UrnaEletronicaNew extends javax.swing.JFrame implements UrnaInterfa
         if(votosValidos.isEmpty()){
             JOptionPane.showMessageDialog(null, "Enésima zerada!");
         }else{
+            Collections.sort(listaCandidatos);
             for(Candidato c : listaCandidatos){
                 str += c.getNome()+": "+c.getVotos()+" votos validos.\n";
             }

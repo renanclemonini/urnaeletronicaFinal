@@ -1,14 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.senai.ds1;
 
 /**
  *
  * @author rclem
  */
-public class Candidato extends AbstractClass {
+public class Candidato extends AbstractClass implements Comparable<Candidato>{
     
     public Candidato() {
     }
@@ -21,7 +17,7 @@ public class Candidato extends AbstractClass {
         setVotos(0);
     }
     
-    public Candidato(String nome, int votos){
+    public Candidato(String nome){
         setNome(nome);
         setVotos(0);
     }
@@ -34,6 +30,17 @@ public class Candidato extends AbstractClass {
     @Override
     public void resetVotos() {
         setVotos(0);
+    }
+
+    @Override
+    public int compareTo(Candidato o) {
+        if(getVotos() < o.getVotos()){
+            return 1;
+        }
+        if(getVotos() > o.getVotos()){
+            return -1;
+        }
+        return 0;
     }
     
     
