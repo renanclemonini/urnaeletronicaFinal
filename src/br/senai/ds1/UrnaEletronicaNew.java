@@ -3,9 +3,9 @@ package br.senai.ds1;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,7 +19,7 @@ public class UrnaEletronicaNew extends javax.swing.JFrame implements UrnaInterfa
         addCandidatoLista();
     }
 
-    //Candudatos
+    //Candidatos
     Candidato c12 = new Candidato("Ciro", "Ana Paula", 12, "PDT");
     Candidato c13 = new Candidato("Lula", "Geraldo", 13, "PT");
     Candidato c14 = new Candidato("Padre Kelmon", "Pastor Gamonal", 14, "PTB");
@@ -31,14 +31,19 @@ public class UrnaEletronicaNew extends javax.swing.JFrame implements UrnaInterfa
     ImageIcon lula = new ImageIcon(getClass().getResource("/image/lula.jpg"));
     ImageIcon geraldo = new ImageIcon(getClass().getResource("/image/geraldo.jpg"));
     ImageIcon ciro = new ImageIcon(getClass().getResource("/image/ciro.jpg"));
-    ImageIcon anapaula = new ImageIcon(getClass().getResource("/image/anapaula.jpg"));
+    ImageIcon anaPaula = new ImageIcon(getClass().getResource("/image/anapaula.jpg"));
     ImageIcon bolsonaro = new ImageIcon(getClass().getResource("/image/bolsonaro.jpg"));
-    ImageIcon braganeto = new ImageIcon(getClass().getResource("/image/braganeto.jpg"));
+    ImageIcon bragaNeto = new ImageIcon(getClass().getResource("/image/braganeto.jpg"));
     ImageIcon kelmon = new ImageIcon(getClass().getResource("/image/kelmon.jpg"));
-    ImageIcon prgamonal = new ImageIcon(getClass().getResource("/image/prgamonal.jpg"));
+    ImageIcon prGamonal = new ImageIcon(getClass().getResource("/image/prgamonal.jpg"));
 
     static final List<Candidato> listaCandidatos = new ArrayList();
     static final List<Candidato> votosValidos = new ArrayList<>();
+    
+    @Override
+    public void setNumero(JButton btn){
+        txtNumero.setText(txtNumero.getText() + btn.getText());
+    }
     
     @Override
     public final void addCandidatoLista() {
@@ -50,6 +55,7 @@ public class UrnaEletronicaNew extends javax.swing.JFrame implements UrnaInterfa
         listaCandidatos.add(votoNulo);
     }
     
+    @Override
     public void addVotoValido(Candidato candidato){
         if(listaCandidatos.contains(candidato)){
             candidato.updateVoto();
@@ -66,6 +72,13 @@ public class UrnaEletronicaNew extends javax.swing.JFrame implements UrnaInterfa
         c22.resetVotos();
         votoBranco.resetVotos();
         votoNulo.resetVotos();
+    }
+    
+    @Override
+    public void restartVotacao(){
+        reiniciarVotacao();
+        setExibicaoInicial();
+        JOptionPane.showMessageDialog(null, "Votação reiniciada!");
     }
 
     @Override
@@ -92,7 +105,7 @@ public class UrnaEletronicaNew extends javax.swing.JFrame implements UrnaInterfa
                 lblPartido.setText(c12.getPartido());
                 lblVice.setText(c12.getVice());
                 lblFotoPresidente.setIcon(ciro);
-                lblFotoVice.setIcon(anapaula);
+                lblFotoVice.setIcon(anaPaula);
             }
             case "13" -> {
                 setExibicao();
@@ -108,7 +121,7 @@ public class UrnaEletronicaNew extends javax.swing.JFrame implements UrnaInterfa
                 lblPartido.setText(c14.getPartido());
                 lblVice.setText(c14.getVice());
                 lblFotoPresidente.setIcon(kelmon);
-                lblFotoVice.setIcon(prgamonal);
+                lblFotoVice.setIcon(prGamonal);
             }
             case "22" -> {
                 setExibicao();
@@ -116,7 +129,7 @@ public class UrnaEletronicaNew extends javax.swing.JFrame implements UrnaInterfa
                 lblPartido.setText(c22.getPartido());
                 lblVice.setText(c22.getVice());
                 lblFotoPresidente.setIcon(bolsonaro);
-                lblFotoVice.setIcon(braganeto);
+                lblFotoVice.setIcon(bragaNeto);
             }
             case "Branco" -> {
                 lblNome.setText("Voto em Branco");
@@ -180,18 +193,9 @@ public class UrnaEletronicaNew extends javax.swing.JFrame implements UrnaInterfa
     }
     
     @Override
-    public void exibirResultados() {
-        String str = "";
-        if (listaCandidatos.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Enesima zerada");
-        } else {
-            str += "\n" + c12.getNome() + ": " + c12.getVotos() + " votos validos.";
-            str += "\n" + c13.getNome() + ": " + c13.getVotos() + " votos validos.";
-            str += "\n" + c14.getNome() + ": " + c14.getVotos() + " votos validos.";
-            str += "\n" + c22.getNome() + ": " + c22.getVotos() + " votos validos.";
-            str += "\n" + votoBranco.getNome() + ": " + votoBranco.getVotos() + " votos validos.";
-            str += "\n" + votoNulo.getNome() + ": " + votoNulo.getVotos() + " votos validos.";
-            JOptionPane.showMessageDialog(null, str);
+    public void popUpTrigger(MouseEvent evt){
+        if (evt.isPopupTrigger()) {
+            showPopMenu(evt);
         }
     }
     
@@ -233,7 +237,7 @@ public class UrnaEletronicaNew extends javax.swing.JFrame implements UrnaInterfa
             JOptionPane.showMessageDialog(null, str);
         }
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -735,62 +739,62 @@ public class UrnaEletronicaNew extends javax.swing.JFrame implements UrnaInterfa
 
     private void btnValue2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValue2ActionPerformed
         // TODO add your handling code here:
-        txtNumero.setText(txtNumero.getText() + "2");
+        setNumero(btnValue2);
         setNumeroCandidato();
     }//GEN-LAST:event_btnValue2ActionPerformed
 
     private void btnValue3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValue3ActionPerformed
         // TODO add your handling code here:
-        txtNumero.setText(txtNumero.getText() + "3");
+        setNumero(btnValue3);
         setNumeroCandidato();
     }//GEN-LAST:event_btnValue3ActionPerformed
 
     private void btnValue4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValue4ActionPerformed
         // TODO add your handling code here:
-        txtNumero.setText(txtNumero.getText() + "4");
+        setNumero(btnValue4);
         setNumeroCandidato();
     }//GEN-LAST:event_btnValue4ActionPerformed
 
     private void btnValue5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValue5ActionPerformed
         // TODO add your handling code here:
-        txtNumero.setText(txtNumero.getText() + "5");
+        setNumero(btnValue5);
         setNumeroCandidato();
     }//GEN-LAST:event_btnValue5ActionPerformed
 
     private void btnValue6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValue6ActionPerformed
         // TODO add your handling code here:
-        txtNumero.setText(txtNumero.getText() + "6");
+        setNumero(btnValue6);
         setNumeroCandidato();
     }//GEN-LAST:event_btnValue6ActionPerformed
 
     private void btnValue7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValue7ActionPerformed
         // TODO add your handling code here:
-        txtNumero.setText(txtNumero.getText() + "7");
+        setNumero(btnValue7);
         setNumeroCandidato();
     }//GEN-LAST:event_btnValue7ActionPerformed
 
     private void btnValue8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValue8ActionPerformed
         // TODO add your handling code here:
-        txtNumero.setText(txtNumero.getText() + "8");
+        setNumero(btnValue8);
         setNumeroCandidato();
     }//GEN-LAST:event_btnValue8ActionPerformed
 
     private void btnValue9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValue9ActionPerformed
         // TODO add your handling code here:
-        txtNumero.setText(txtNumero.getText() + "9");
+        setNumero(btnValue9);
         setNumeroCandidato();
     }//GEN-LAST:event_btnValue9ActionPerformed
 
     private void btnValue0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValue0ActionPerformed
         // TODO add your handling code here:
-        txtNumero.setText(txtNumero.getText() + "0");
+        setNumero(btnValue0);
         setNumeroCandidato();
     }//GEN-LAST:event_btnValue0ActionPerformed
 
     private void btnBrancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrancoActionPerformed
         // TODO add your handling code here:
         setExibicaoInicial();
-        txtNumero.setText(txtNumero.getText() + "Branco");
+        setNumero(btnBranco);
         setNumeroCandidato();
     }//GEN-LAST:event_btnBrancoActionPerformed
 
@@ -807,16 +811,12 @@ public class UrnaEletronicaNew extends javax.swing.JFrame implements UrnaInterfa
 
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         // TODO add your handling code here:
-        if (evt.isPopupTrigger()) {
-            showPopMenu(evt);
-        }
+        popUpTrigger(evt);
     }//GEN-LAST:event_formMousePressed
 
     private void formMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseReleased
         // TODO add your handling code here:
-        if (evt.isPopupTrigger()) {
-            showPopMenu(evt);
-        }
+        popUpTrigger(evt);
     }//GEN-LAST:event_formMouseReleased
 
     private void votosParcialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_votosParcialActionPerformed
@@ -841,22 +841,18 @@ public class UrnaEletronicaNew extends javax.swing.JFrame implements UrnaInterfa
 
     private void btnValue1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValue1ActionPerformed
         // TODO add your handling code here:
-        txtNumero.setText(txtNumero.getText() + "1");
+        setNumero(btnValue1);
         setNumeroCandidato();
     }//GEN-LAST:event_btnValue1ActionPerformed
 
     private void resetVotacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetVotacaoActionPerformed
         // TODO add your handling code here:
-        reiniciarVotacao();
-        setExibicaoInicial();
-        JOptionPane.showMessageDialog(null, "Votação reiniciada");
+        restartVotacao();
     }//GEN-LAST:event_resetVotacaoActionPerformed
 
     private void itemReiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemReiniciarActionPerformed
         // TODO add your handling code here:
-        reiniciarVotacao();
-        setExibicaoInicial();
-        JOptionPane.showMessageDialog(null, "Votação reiniciada");
+        restartVotacao();
     }//GEN-LAST:event_itemReiniciarActionPerformed
 
     private void encerrarVotacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encerrarVotacaoActionPerformed
