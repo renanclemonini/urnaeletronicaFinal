@@ -2,7 +2,7 @@ package br.senai.ds1;
 
 /**
  *
- * @author rclem
+ * @author Renan Clemonini
  */
 public class Candidato extends AbstractClass implements Comparable<Candidato>{
     

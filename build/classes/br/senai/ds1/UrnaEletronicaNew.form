@@ -10,18 +10,10 @@
       <SubComponents>
         <MenuItem class="javax.swing.JMenuItem" name="exibirApuracao">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Exibir Apura&#xe7;&#xe3;o"/>
+            <Property name="text" type="java.lang.String" value="Apura&#xe7;&#xe3;o"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exibirApuracaoActionPerformed"/>
-          </Events>
-        </MenuItem>
-        <MenuItem class="javax.swing.JMenuItem" name="votosParcial">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Exibir Parcial"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="votosParcialActionPerformed"/>
           </Events>
         </MenuItem>
         <MenuItem class="javax.swing.JMenuItem" name="resetVotacao">
@@ -440,6 +432,7 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConfirmaActionPerformed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="btnConfirmaKeyPressed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnValue4">

@@ -6,7 +6,7 @@ import javax.swing.JButton;
 
 /**
  *
- * @author rclem
+ * @author Renan Clemonini
  */
 public interface UrnaInterface {
     
@@ -22,6 +22,7 @@ public interface UrnaInterface {
     public void showPopMenu(MouseEvent e);
     public void popUpTrigger(MouseEvent evt);
     public void setEnter(KeyEvent evt);
-    public String exibirApuracao();
-    public void exibirParcial();
+    public void enterConfirma(KeyEvent evt);
+    public void apuracaoTela();
+    public void apuracaoConsole();
 }

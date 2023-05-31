@@ -6,7 +6,7 @@ package br.senai.ds1;
 
 /**
  *
- * @author rclem
+ * @author Renan Clemonini
  */
 public abstract class AbstractClass {
     
@@ -61,7 +61,7 @@ public abstract class AbstractClass {
 
     @Override
     public String toString() {
-        return "Candidato: " + nome + " - Votos: " + votos + "\n";
+        return "\n" + nome + ": " + votos + " votos válidos.";
     }
     
     
