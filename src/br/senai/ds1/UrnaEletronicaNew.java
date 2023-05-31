@@ -14,12 +14,12 @@ import javax.swing.JOptionPane;
  * <p>Neste Simulador aprendemos mais sobre o desenvolvimento de interfaces gráficas com o paradigma de programação orientado a objetos.</p>
  * <h3>Candidatos Cadastrados</h3> 
  * <ul>
- *      <li>Ciro - 12</li>
- *      <li>Lula - 13</li>
- *      <li>Padre Kelmon - 14</li>
- *      <li>Bolsonaro - 22</li>
- *      <li>Voto em Branco - Tecla Branco</li>
- *      <li>Voto Nulo - Duas vezes numero 0</li>
+ *      <li>12 - Ciro</li>
+ *      <li>13 - Lula</li>
+ *      <li>14 - Padre Kelmon</li>
+ *      <li>22 - Bolsonaro</li>
+ *      <li>00 - Voto Nulo</li>
+ *      <li>(Branco) - Voto em Branco</li>
  * </ul>
  * @author Renan Clemonini
  */
